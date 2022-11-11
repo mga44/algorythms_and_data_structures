@@ -7,17 +7,6 @@ class Node<T>(private val value: T) {
         return element
     }
 
-    fun getChildren(): List<Node<T>> {
-        return children
-    }
-
-    fun contains(value: T): Boolean {
-        if (this.value != null && this.value == value)
-            return true
-
-        return false
-    }
-
     override fun toString(): String {
         return printLevel(0)
     }

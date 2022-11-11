@@ -1,6 +1,4 @@
-fun main(args: Array<String>) {
-    //  println("Hello World!")
-
+fun main() {
     val tree: Node<String> = Node("String")
     tree
         .addChild("Another string")
