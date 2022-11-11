@@ -1,5 +1,3 @@
-import java.lang.IllegalStateException
-
 class BinaryTree<T>(rootVal: T) {
     private var root: Node<T>
 
@@ -8,18 +6,10 @@ class BinaryTree<T>(rootVal: T) {
     }
 
     fun addChildToElement(element: T, child: T) {
-        //TODO("Not yet implemented")
-        /*
-        1. get element specified
-        2. check if has less than 2 children
-            - Y -> throw ISE
-            - N -> add and return child node
-         */
-
         val searchedElement: Node<T> = findElement(element, root)
             ?: throw IllegalStateException("Element $element was not found in Binary tree")
 
-        if(searchedElement.children.size >= 2)
+        if (searchedElement.children.size >= 2)
             throw IllegalStateException("Cannot add $child as child to $element: Element has already 2 children")
 
         searchedElement.addChild(child)
@@ -31,7 +21,7 @@ class BinaryTree<T>(rootVal: T) {
         } else {
             for (child in currentNode.children) {
                 val candidate = findElement(element, child)
-                if(candidate != null)
+                if (candidate != null)
                     return candidate
             }
         }
