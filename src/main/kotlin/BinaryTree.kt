@@ -1,5 +1,8 @@
+
 class BinaryTree<T>(rootVal: T) {
-    private var root: Node<T>
+    val root: Node<T>
+    //TODO: ensure that get returns copy of the object
+    //get() { return root.clone() as Node<T> }
 
     init {
         root = Node(rootVal)
@@ -10,7 +13,7 @@ class BinaryTree<T>(rootVal: T) {
             ?: throw IllegalStateException("Element $element was not found in Binary tree")
 
         if (searchedElement.children.size >= 2)
-            throw IllegalStateException("Cannot add $child as child to $element: Element has already 2 children")
+            throw IllegalStateException("Cannot add $child as child to $element: Element already have 2 children")
 
         searchedElement.addChild(child)
     }
@@ -18,12 +21,11 @@ class BinaryTree<T>(rootVal: T) {
     private fun findElement(element: T, currentNode: Node<T>): Node<T>? {
         if (currentNode.value == element) {
             return currentNode
-        } else {
-            for (child in currentNode.children) {
-                val candidate = findElement(element, child)
-                if (candidate != null)
-                    return candidate
-            }
+        }
+        for (child in currentNode.children) {
+            val candidate = findElement(element, child)
+            if (candidate != null)
+                return candidate
         }
 
         return null
@@ -31,5 +33,13 @@ class BinaryTree<T>(rootVal: T) {
 
     override fun toString(): String {
         return root.toString()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return root == other
+    }
+
+    override fun hashCode(): Int {
+        return root.hashCode()
     }
 }
